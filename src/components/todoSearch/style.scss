@@ -1,0 +1,21 @@
+.search-container {
+    width: 585px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #25273C;
+    display: flex;
+    flex-direction: row-reverse;
+
+    &__input {
+        color: white;
+        width: 545px;
+        background-color: transparent;
+        border: none;
+
+        &::placeholder {
+            color: rgb(255, 255, 255);
+            font-family: 'Roboto Mono', monospace;
+        }
+    }
+}

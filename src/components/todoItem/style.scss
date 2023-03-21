@@ -1,0 +1,54 @@
+.li {
+    display: flex;
+    width: 585px;
+    height: 40px;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    padding: 5px 15px 5px 15px;
+    align-items: center;
+    background-color: #25273C;
+
+    &__h3 {
+        color: white;
+    }
+
+    &__h3-complete {
+        text-decoration: line-through;
+    }
+}
+
+.Icon-check-done {
+    left: 12px;
+
+    & figure {
+        border: 1px solid white;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+
+        & img {
+            align-self: center;
+        }
+    }
+}
+
+.Icon-check-done--active {
+   
+    & figure {
+        border: 1px solid white;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background-color: #f112e4;
+
+        & img {
+            align-self: center;
+        }
+    }
+}

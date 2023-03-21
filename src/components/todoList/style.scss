@@ -1,0 +1,13 @@
+.todo-sec {
+    height: 265px;
+    overflow-y: auto;
+    z-index: 1;
+    position: relative;
+    bottom: 60px;
+
+    & ul {
+        overflow-y: hidden;
+        border-radius: 5px;
+
+    }
+}

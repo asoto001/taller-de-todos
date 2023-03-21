@@ -1,0 +1,25 @@
+.main-sec {
+    background-image: url('https://i.ibb.co/JC55Pym/bg-desktop-dark.jpg');
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+
+    &__div-container {
+        display: flex;
+        align-items: center;
+        width: 50vw;
+        justify-content: space-between;
+        color: white;
+    }
+}
+
+.footer-sec{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+}
