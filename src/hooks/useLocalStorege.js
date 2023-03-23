@@ -9,7 +9,7 @@ const useLocalStorege = (jsonItem, initialValue) => {
         setTimeout(() => {
             try {
 
-                const localStoregeItem = localStorage.getItem('jsonItem');
+                const localStoregeItem = localStorage.getItem(jsonItem);
                 let savedItem;
 
                 if (!localStoregeItem) {

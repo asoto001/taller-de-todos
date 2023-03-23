@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { TodoProvider } from '../../router/Router'
 import './style.scss'
 
-const TodoSearch = ({ searchValue, setSearchValue }) => {
+const TodoSearch = () => {
 
+    const { searchValue, setSearchValue } = useContext(TodoProvider)
 
 const onChangeSearchValue = (event) => {
     setSearchValue(event.target.value)
@@ -11,7 +13,9 @@ const onChangeSearchValue = (event) => {
     return (
         <>
             <div className='search-container'>
-                <input className='search-container__input' type="text" placeholder='onions' 
+                <input 
+                className='search-container__input' type="text"
+                placeholder='Busca el todo que nesecitas ' 
                 value={searchValue}
                 onChange={onChangeSearchValue}
                 />

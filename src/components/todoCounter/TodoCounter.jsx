@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { TodoProvider } from '../../router/Router'
+import './style.scss'
 
-const TodoCounter = (total, completed) => {
+const TodoCounter = () => {
 
-
+  const { totalTodos, completedTodos } = useContext(TodoProvider);
 
   return (
     <>
-      <h2>completados {completed} de {total}</h2>
+      <div className='h2'>
+        <h2>completados {completedTodos} de {totalTodos}</h2>
+      </div>
     </>
   )
 }

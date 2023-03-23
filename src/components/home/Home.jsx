@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TodoCounter from '../todoCounter/TodoCounter'
 import TodoItem from '../todoItem/TodoItem'
 import TodoList from '../todoList/TodoList'
-import TodoModal from '../todoModal/TodoModal'
 import TodoSearch from '../todoSearch/TodoSearch'
+import NewTodoBtn from '../NewtodoAndModal/NewTodoBtn'
 import './style.scss'
 import sun from '../assets/icons/icon-sun.svg'
 import moon from '../assets/icons/icon-moon.svg'
 import useLocalStorege from '../../hooks/useLocalStorege'
+import { TodoProvider } from '../../router/Router'
+import Modal from '../NewtodoAndModal/modal/Modal'
+import Form from '../NewtodoAndModal/modal/form/Form'
 
 // const todo = [
 //   { text: 'cortat algo', completed: true },
@@ -15,46 +18,17 @@ import useLocalStorege from '../../hooks/useLocalStorege'
 //   { text: 'asar la carne', completed: false }
 // ]
 
-
-
 const Home = () => {
 
   const {
-    item: todos,
-    saveItem: saveTodos,
+    error,
     loading,
-    error
-  } = useLocalStorege('Todos_v2', []);
-  const [searchValue, setSearchValue] = useState('');
-
-  const completedTodos = todos.filter(todo => !!todo.completed).length;
-  const totalTodos = todos.length;
-
-  let searchedTodos = [];
-
-  if (!searchValue.length >= 1) {
-    searchedTodos = todos;
-  } else {
-    searchedTodos = todos.filter(todo => {
-      const todoText = todo.text.toLowerCase();
-      const searchText = searchValue.toLowerCase();
-      return todoText.includes(searchText);
-    })
-  }
-
-  const completeTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
-    const newTodos = [...todos];
-    newTodos[todoIndex].completed = true;
-    saveTodos(newTodos)
-  }
-
-  const deleteTodo = (text) => {
-    const todoIndex = todos.findIndex(todo => todo.text === text);
-    const newTodos = [...todos];
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
-  }
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal
+  } = useContext(TodoProvider);
 
   const day = false;
 
@@ -69,17 +43,12 @@ const Home = () => {
           </h2>
           {day ? <img src={sun} /> : <img src={moon} />}
         </div>
-        <TodoSearch
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
+        <TodoSearch />
 
       </section>
       <section className='footer-sec'>
-        {/* <TodoCounter
-          total={totalTodos}
-          completed={completedTodos}
-        /> */}
+
+
         <TodoList>
           {error && <h3>AAAAAAA! la vamos a palmar!...</h3>}
           {loading && <h3>Loading...</h3>}
@@ -94,8 +63,17 @@ const Home = () => {
               onDelete={() => deleteTodo(todo.text)}
             />
           ))}
+        
         </TodoList>
-        <TodoModal />
+
+        {!!openModal && (
+          <Modal>
+            <Form />
+          </Modal>
+        )}
+        <NewTodoBtn
+          setOpenModal={setOpenModal}
+        />
       </section>
     </>
   )
